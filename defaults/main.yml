@@ -1,2 +1,16 @@
 ---
 # defaults file for ansible-control-machine
+
+#
+ansible_roles_dir: '/etc/ansible/roles'
+ansible_playbooks_dir: '/etc/ansible/playbooks'
+ansible_virtualenv_dir: '/etc/ansible/virtualenvs'
+
+ansible_roles:
+  - repo: 'https://github.com/FXinnovation/BN-LinuxHardening.git'
+    dest: 'BN-LinuxHardening'
+
+ansible_versions:
+  - '2.2.1.0'
+
+default_version: '2.2.1.0'

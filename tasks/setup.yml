@@ -1,0 +1,45 @@
+---
+- name: Installing Python Virtualenv Packages
+  pip:
+    name: "{{ item }}"
+    state: "present"
+  with_items:
+    - 'httplib2'
+    - 'virtualenv'
+
+- name: Ensuring Ansible Directories Exists
+  file:
+    path: "{{ item }}"
+    state: "directory"
+  with_items:
+    - '{{ ansible_roles_dir }}'
+    - '{{ ansible_playbooks_dir }}'
+    - '{{ ansible_virtualenv_dir }}'
+
+- name: Configuring Ansible Virtual Environments
+  pip:
+    name: "ansible"
+    version: "{{ item |default (omit) }}"
+    virtualenv: "{{ ansible_virtualenv_dir }}/{{ item }}"
+  with_items:
+    - '{{ ansible_versions }}'
+    - '{{ default_version }}'
+
+- name: Fetching Ansible Roles
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ ansible_roles_dir }}/{{ item.dest }}"
+  with_items: '{{ ansible_roles }}'
+
+- name: Make Default Ansible available to shell
+  copy:
+    dest: /etc/profile.d/ansible.sh
+    content: "source {{ ansible_virtualenv_dir }}/{{ default_version }}/bin/activate"
+
+- name: Ansible Configuration file
+  template:
+    src: 'ansible_cfg.j2'
+    dest: '/etc/ansible/ansible.cfg'
+    owner: root
+    group: root
+    mode: 0640

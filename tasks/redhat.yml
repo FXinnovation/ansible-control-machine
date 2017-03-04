@@ -1,0 +1,22 @@
+---
+- name: Installing EPEL Repo
+  yum:
+    name: "epel-release"
+    state: "present"
+
+- name: Installing Pre-Reqs
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - 'git'
+    - 'libffi-devel'
+    - 'openssl-devel'
+    - 'python-crypto'
+    - 'python-devel'
+    - 'python-setuptools'
+
+- name: Installing Python-Pip
+  yum:
+    name: "python-pip"
+    state: "present"
