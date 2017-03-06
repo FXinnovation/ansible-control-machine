@@ -15,6 +15,7 @@
     - 'python-crypto'
     - 'python-devel'
     - 'python-setuptools'
+    - 'gcc'
 
 - name: Installing Python-Pip
   yum:

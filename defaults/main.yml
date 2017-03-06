@@ -7,8 +7,10 @@ ansible_playbooks_dir: '/etc/ansible/playbooks'
 ansible_virtualenv_dir: '/etc/ansible/virtualenvs'
 
 ansible_roles:
-  - repo: 'https://github.com/FXinnovation/BN-LinuxHardening.git'
-    dest: 'BN-LinuxHardening'
+  - src: 'https://github.com/FXinnovation/BN-LinuxHardening.git'
+    name: 'BN-LinuxHardening'
+  - src: 'https://github.com/FXinnovation/ansible-control-machine.git'
+    name: 'ansible-control-machine'
 
 ansible_versions:
   - '2.2.1.0'

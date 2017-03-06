@@ -27,8 +27,8 @@
 
 - name: Fetching Ansible Roles
   git:
-    repo: "{{ item.repo }}"
-    dest: "{{ ansible_roles_dir }}/{{ item.dest }}"
+    repo: "{{ item.src }}"
+    dest: "{{ ansible_roles_dir }}/{{ item.name }}"
   with_items: '{{ ansible_roles }}'
 
 - name: Make Default Ansible available to shell
