@@ -1,10 +1,27 @@
 ---
-- name: Installing EPEL Repo
+- name: Installing EPEL release
   yum:
-    name: "epel-release"
-    state: "present"
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    state: 'present'
 
-- name: Installing Pre-Reqs
+- name: Installing CentOS specific Pre-Reqs
+  yum:
+    name: "{{ item }}"
+    state: "present"
+  when: ansible_distribution == 'CentOS'
+  with_items:
+    - 'python-crypto'
+
+- name: Installing RHEL specific Pre-Reqs
+  yum:
+    name: "{{ item }}"
+    state: "present"
+  when: ansible_distribution == 'RedHat'
+  with_items:
+    - 'python-cryptography'
+    - 'python-devel'
+
+- name: Installing Common Pre-Reqs
   yum:
     name: "{{ item }}"
     state: present
@@ -12,7 +29,6 @@
     - 'git'
     - 'libffi-devel'
     - 'openssl-devel'
-    - 'python-crypto'
     - 'python-devel'
     - 'python-setuptools'
     - 'gcc'
@@ -21,3 +37,11 @@
   yum:
     name: "python-pip"
     state: "present"
+  when: ansible_distribution == 'CentOS'
+
+- name: Installing Python-Pip
+  yum:
+    name: "python2-pip"
+    state: "present"
+  when: ansible_distribution == 'RedHat'
+
