@@ -25,6 +25,11 @@
     - '{{ ansible_versions }}'
     - '{{ default_version }}'
 
+- name: Fetching playbooks
+  git:
+    repo: '{{ playbook_repo }}'
+    dest: '{{ ansible_playbooks_dir }}'
+
 - name: Fetching Ansible Roles
   git:
     repo: "{{ item.src }}"

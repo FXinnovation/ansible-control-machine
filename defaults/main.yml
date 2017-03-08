@@ -12,6 +12,8 @@ ansible_roles:
   - src: 'https://github.com/FXinnovation/ansible-control-machine.git'
     name: 'ansible-control-machine'
 
+playbook_repo: 'https://github.com/pclermont/ansible-playbooks.git'
+
 ansible_versions:
   - '2.2.1.0'
 
