@@ -15,7 +15,7 @@
     - '{{ ansible_roles_dir }}'
     - '{{ ansible_playbooks_dir }}'
     - '{{ ansible_virtualenv_dir }}'
-
+    - '{{ ansible_inventory_dir }}'
 - name: Configuring Ansible Virtual Environments
   pip:
     name: "ansible"
@@ -29,6 +29,11 @@
   git:
     repo: '{{ playbook_repo }}'
     dest: '{{ ansible_playbooks_dir }}'
+
+- name: Fetching inventory
+  git:
+    repo: '{{ inventory_repo }}'
+    dest: '{{ ansible_inventory_dir }}'
 
 - name: Fetching Ansible Roles
   git:

@@ -5,6 +5,7 @@
 ansible_roles_dir: '/etc/ansible/roles'
 ansible_playbooks_dir: '/etc/ansible/playbooks'
 ansible_virtualenv_dir: '/etc/ansible/virtualenvs'
+ansible_inventory_dir: '/etc/ansible/inventory'
 
 ansible_roles:
   - src: 'https://github.com/FXinnovation/BN-LinuxHardening.git'
@@ -13,6 +14,7 @@ ansible_roles:
     name: 'ansible-control-machine'
 
 playbook_repo: 'https://github.com/pclermont/ansible-playbooks.git'
+inventory_repo: 'https://github.com/pclermont/ansible-inventory.git'
 
 ansible_versions:
   - '2.2.1.0'
