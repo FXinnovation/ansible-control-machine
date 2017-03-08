@@ -6,6 +6,10 @@
   with_items:
     - 'httplib2'
     - 'virtualenv'
+    - 'pywinrm'
+
+# TODO: read http://docs.ansible.com/ansible/intro_windows.html#installing-on-the-control-machine and
+#       make sure that it works on both CentOS and RedHat
 
 - name: Ensuring Ansible Directories Exists
   file:
